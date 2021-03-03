@@ -1,9 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/Frog_Boat.png" type="Texture" id=2]
+[ext_resource path="res://Player/Forg16x16.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.03828, 8.07002 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 83, 50 )
