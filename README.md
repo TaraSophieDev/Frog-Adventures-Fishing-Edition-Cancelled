@@ -1,4 +1,4 @@
-# Fishing Frog
+# Fishing Fish Frog FFF
 
 ## Ideas
 1. Sell fishes/Junk to be able to buy new Fishing rods or upgrades like faster boat | Get a certain score to level up your gear.
