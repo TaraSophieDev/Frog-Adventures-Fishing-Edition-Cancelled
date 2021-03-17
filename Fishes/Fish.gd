@@ -4,6 +4,8 @@ var swim_speed = 10
 var baited_speed = 12
 var time = 0
 
+onready var timer = $Timer
+
 var motion = Vector2()
 
 
@@ -19,13 +21,13 @@ var fish_state = state.swimming
 func process_state():
 	match fish_state:
 		state.idle:
-			print("Idle")
+			#print("Idle")
 			process_idle()
 		state.swimming:
-			print("Swimming")
+			#print("Swimming")
 			process_swimming()
 		state.baited:
-			print("Baited")
+			#print("Baited")
 			process_baited()
 
 func process_baited():
@@ -37,9 +39,15 @@ func process_swimming():
 func process_idle():
 	pass
 
+func timer_rand():
+	timer.start(rand_range(2,6))
+	print(timer.wait_time)
+
 func _ready():
-	pass
+	timer_rand()
 	
-func process(delta):
+func _process(delta):
 	process_state()
 	motion = move_and_slide(motion)
+
+	
