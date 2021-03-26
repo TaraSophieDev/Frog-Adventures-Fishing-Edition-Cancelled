@@ -1,4 +1,5 @@
-# Fishing Fish Frog FFF
+# Frog Adventures: Fishing edition
+
 
 ## Ideas
 1. Sell fishes/Junk to be able to buy new Fishing rods or upgrades like faster boat | Get a certain score to level up your gear.
