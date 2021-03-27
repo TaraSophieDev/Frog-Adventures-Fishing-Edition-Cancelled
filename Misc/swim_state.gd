@@ -2,7 +2,7 @@ extends State
 
 class_name SwimState
 
-var move_speed = Vector2(180, 0)
+var move_speed = Vector2(45, 0)
 var min_move_speed = 0.005
 var friction = 0.32
 
