@@ -25,4 +25,5 @@ position = Vector2( 88, 48 )
 collision_layer = 2147483649
 
 [node name="Fish" parent="Sprites" instance=ExtResource( 5 )]
-position = Vector2( 24, 72 )
+position = Vector2( 144, 72 )
+collision_layer = 2
