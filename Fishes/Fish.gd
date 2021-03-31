@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-onready var sprite = $AnimatedSprite
+onready var sprite = $Sprite
+onready var ap = $AnimationPlayer
 onready var rc = $RC
 
 enum {
@@ -22,7 +23,7 @@ func _process(delta):
 		state = baited()
 	match state:
 		IDLE:
-			sprite.stop()
+			ap.stop()
 		NEW_DIR:
 			dir = choose([Vector2.RIGHT, Vector2.LEFT])
 			state = choose([IDLE, MOVE])
@@ -36,7 +37,7 @@ func move(delta):
 	var temp = rad2deg(atan2(-dir.y, -dir.x))
 	rc.rotation_degrees = temp
 
-	sprite.play()
+	ap.play("Swim")
 	position += dir * SPEED * delta
 	print(dir.x)
 	if dir.x == 1:
