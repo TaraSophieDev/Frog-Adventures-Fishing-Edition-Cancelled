@@ -39,7 +39,6 @@ func move(delta):
 
 	ap.play("Swim")
 	position += dir * SPEED * delta
-	print(dir.x)
 	if dir.x == 1:
 		sprite.flip_h = true
 	elif dir.x == -1:
@@ -55,5 +54,5 @@ func baited():
 
 func _on_Timer_timeout():
 	$Timer.wait_time = choose([1, 1.5, 2])
-	print($Timer.wait_time)
+	print("Timer wait time: ", $Timer.wait_time)
 	state = choose([IDLE, NEW_DIR, MOVE])
