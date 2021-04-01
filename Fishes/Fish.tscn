@@ -45,6 +45,7 @@ texture = ExtResource( 1 )
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 2.0
 anims/Chase = SubResource( 1 )
 anims/Swim = SubResource( 2 )
 
