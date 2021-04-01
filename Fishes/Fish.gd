@@ -50,6 +50,7 @@ func choose(array):
 	return array.front()
 
 func baited():
+	ap.play("Chase")
 	print("baited")
 
 func _on_Timer_timeout():
