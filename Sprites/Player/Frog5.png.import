@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Fishing_Rod3.png-d5ca09e591fe46ae49ef2639152d8132.stex"
+path="res://.import/Frog5.png-0e38b0376bb5b9a02347c9a140c698e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Misc/Fishing_Rod3.png"
-dest_files=[ "res://.import/Fishing_Rod3.png-d5ca09e591fe46ae49ef2639152d8132.stex" ]
+source_file="res://Sprites/Player/Frog5.png"
+dest_files=[ "res://.import/Frog5.png-0e38b0376bb5b9a02347c9a140c698e3.stex" ]
 
 [params]
 
