@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.03828, 8.07002 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "bait_left"
 tracks/0/type = "value"
 tracks/0/path = NodePath("FrogSprite/Bait:position")
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -22, 10 ) ]
+"values": [ Vector2( -16, 10 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -34,7 +34,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 22, 10 ) ]
+"values": [ Vector2( 16, 10 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -98,11 +98,9 @@ script = ExtResource( 1 )
 position = Vector2( 0, 0.5 )
 texture = ExtResource( 2 )
 hframes = 4
-frame = 1
 
 [node name="Bait" parent="FrogSprite" instance=ExtResource( 4 )]
-position = Vector2( -13.6465, 2.17678 )
-rotation = 0.404916
+position = Vector2( 16, 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 8.00678, 8.44997 )
@@ -113,7 +111,7 @@ offset = Vector2( 0, 20 )
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/bait_left = SubResource( 6 )
+anims/bait_left = SubResource( 2 )
 anims/bait_right = SubResource( 3 )
 
 [node name="SwimmingPlayer" type="AnimationPlayer" parent="."]
