@@ -4,6 +4,7 @@ onready var frogSprite = $FrogSprite
 onready var baitSprite = $FrogSprite/Bait/Sprite
 onready var swimP = $SwimmingPlayer
 onready var swingP = $SwingPlayer
+onready var bait = preload("res://Misc/BaitEntity.tscn")
 
 
 enum {
@@ -50,4 +51,10 @@ func move():
 
 func playThrowingAnim():
 	swingP.play("swing")
+	spawnBait()
 	state = FISHING
+	
+func spawnBait():
+	var bait_instance = bait.instance()
+	bait_instance.position = get_global_position()
+	get_tree().get_root().add_child(bait_instance)
