@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 8 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 loop = true
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("FrogSprite:position:y")
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "swing"
 length = 1.5
 tracks/0/type = "value"
@@ -40,9 +40,16 @@ position = Vector2( 83, 50 )
 collision_layer = 3
 script = ExtResource( 1 )
 
+[node name="BaitSpawnLeft" type="Node2D" parent="."]
+position = Vector2( -20, -5 )
+
+[node name="BaitSpawnRight" type="Node2D" parent="."]
+position = Vector2( 20, -5 )
+
 [node name="FrogSprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 4
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 8 )
@@ -55,7 +62,7 @@ current = true
 
 [node name="SwimmingPlayer" type="AnimationPlayer" parent="."]
 autoplay = "swimming"
-anims/swimming = SubResource( 4 )
+anims/swimming = SubResource( 2 )
 
 [node name="SwingPlayer" type="AnimationPlayer" parent="."]
-anims/swing = SubResource( 5 )
+anims/swing = SubResource( 3 )

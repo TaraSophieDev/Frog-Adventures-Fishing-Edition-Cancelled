@@ -4,6 +4,9 @@ onready var frogSprite = $FrogSprite
 onready var baitSprite = $FrogSprite/Bait/Sprite
 onready var swimP = $SwimmingPlayer
 onready var swingP = $SwingPlayer
+onready var bSLeft = $BaitSpawnLeft
+onready var bSRight = $BaitSpawnRight
+
 onready var bait = preload("res://Misc/BaitEntity.tscn")
 
 
@@ -56,5 +59,11 @@ func playThrowingAnim():
 	
 func spawnBait():
 	var bait_instance = bait.instance()
-	bait_instance.position = get_global_position()
+	yield(get_tree().create_timer(1.10), "timeout")
+	if frogSprite.flip_h == false:
+		bait_instance.get_node("Sprite").flip_h = true
+		bait_instance.position = bSLeft.get_global_position()
+	if frogSprite.flip_h == true:
+		bait_instance.get_node("Sprite").flip_h = false
+		bait_instance.position = bSRight.get_global_position()
 	get_tree().get_root().add_child(bait_instance)
