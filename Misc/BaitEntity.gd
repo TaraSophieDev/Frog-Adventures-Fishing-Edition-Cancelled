@@ -33,6 +33,7 @@ func _physics_process(delta):
 
 func move(delta):
 	if Input.is_action_just_pressed("a_button"):
+                #check if x coords is smaller than the frog x coords and otherwise
 		if frogSprite.flip_h == false:
 			motion.x = -speed
 		if frogSprite.flip_h == true:
