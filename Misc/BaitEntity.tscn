@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/Misc/Bait_Hook-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://Misc/BaitEntity.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -37,6 +38,7 @@ tracks/0/keys = {
 
 [node name="BaitEntity" type="KinematicBody2D"]
 collision_layer = 3
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -49,3 +51,6 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/bait_down = SubResource( 2 )
 anims/bait_up = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 0, 20 )
