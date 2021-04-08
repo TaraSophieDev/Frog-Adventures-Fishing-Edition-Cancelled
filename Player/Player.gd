@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
 onready var frogSprite = $FrogSprite
-onready var baitSprite = $FrogSprite/Bait/Sprite
+#onready var baitSprite = $FrogSprite/Bait/Sprite
 onready var swimP = $SwimmingPlayer
 onready var swingP = $SwingPlayer
 onready var bSLeft = $BaitSpawnLeft
 onready var bSRight = $BaitSpawnRight
 
-onready var bait = preload("res://Misc/BaitEntity.tscn")
+onready var bait = get_node("BaitEntity")
 
 
 enum {
@@ -34,11 +34,7 @@ func _process(delta):
 		FISHING:
 			print("Fishing")
 		CATCHING:
-			pass
-	
-	#Checks if a button is activated		
-	if Input.is_action_just_pressed("a_button"):
-		state = THROWING
+			pass		
 	
 	motion = move_and_slide(motion)
 
@@ -52,18 +48,25 @@ func move():
 	else:
 		motion.x = 0
 
+	if Input.is_action_just_pressed("a_button"):
+		state = THROWING
+
+
 func playThrowingAnim():
 	swingP.play("swing")
 	spawnBait()
 	state = FISHING
 	
 func spawnBait():
-	var bait_instance = bait.instance()
+	#var bait_instance = bait.instance()
 	yield(get_tree().create_timer(1.10), "timeout")
+	bait.show()
 	if frogSprite.flip_h == false:
-		bait_instance.get_node("Sprite").flip_h = true
-		bait_instance.position = bSLeft.get_global_position()
+		bait.get_node("Sprite").flip_h = true
+		bait.position = bSLeft.get_global_position()
+		state = FISHING
 	if frogSprite.flip_h == true:
-		bait_instance.get_node("Sprite").flip_h = false
-		bait_instance.position = bSRight.get_global_position()
-	get_tree().get_root().add_child(bait_instance)
+		bait.get_node("Sprite").flip_h = false
+		bait.position = bSRight.get_global_position()
+		state = FISHING
+	#get_tree().get_root().add_child(bait_instance)
