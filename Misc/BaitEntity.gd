@@ -33,13 +33,14 @@ func _physics_process(delta):
 
 func move(delta):
 	if Input.is_action_just_pressed("a_button"):
-                #check if x coords is smaller than the frog x coords and otherwise
-		if frogSprite.flip_h == false:
+		#check if x coords is smaller than the frog x coords and otherwise
+		print("player pos: ", player.position.x, " Bait Pos: ", global_position.x)
+		if global_position.x > player.position.x:
 			motion.x = -speed
-		if frogSprite.flip_h == true:
+		if global_position.x < player.position.x:
 			motion.x = speed
-		motion.y -= 40
-		yield(get_tree().create_timer(0.5), "timeout")
+		motion.y -= 50
+		yield(get_tree().create_timer(0.25), "timeout")
 	else:
 		motion.x = 0
 
