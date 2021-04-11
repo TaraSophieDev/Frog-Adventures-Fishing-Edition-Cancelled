@@ -1,27 +1,31 @@
-extends KinematicBody2D
+extends RigidBody2D
 
 onready var player = get_node("..")
 onready var frogSprite = player.get_node("FrogSprite")
 
 var motion = Vector2()
-var speed = 200
+var speed = 20
 var gravity = 5
+var jump_force = 50
 #var player = is_in_group("player")
 
 
 enum {
+	IDLE,
 	MOVING,
 	BAITED,
 	CATCHING
 }
 
-var state = MOVING
+var state = IDLE
 
 func _physics_process(delta):
 	match state:
+		IDLE:
+			pass
 		MOVING:
 			move(delta)
-			motion.y += gravity
+			#motion.y += gravity
 
 		BAITED:
 			baited()
@@ -29,20 +33,20 @@ func _physics_process(delta):
 			catching()
 		
 
-	motion = move_and_slide(motion)
+	#motion = move_and_slide(motion)
 
 func move(delta):
 	if Input.is_action_just_pressed("a_button"):
 		#check if x coords is smaller than the frog x coords and otherwise
 		print("player pos: ", player.position.x, " Bait Pos: ", global_position.x)
 		if global_position.x > player.position.x:
-			motion.x = -speed
+			apply_impulse(Vector2(0,0), Vector2(-speed, 0))
 		if global_position.x < player.position.x:
-			motion.x = speed
-		motion.y -= 50
+			apply_impulse(Vector2(0,0), Vector2(speed, 0))
+		apply_central_impulse(Vector2.UP * jump_force)
 		yield(get_tree().create_timer(0.25), "timeout")
-	else:
-		motion.x = 0
+#	else:
+#		motion.x = 0
 
 
 func baited():
@@ -55,3 +59,7 @@ func catching():
 
 func _ready():
 	pass
+
+
+func _on_bait_activation():
+	state = MOVING

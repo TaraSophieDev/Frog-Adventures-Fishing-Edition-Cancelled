@@ -36,8 +36,9 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[node name="BaitEntity" type="KinematicBody2D"]
+[node name="BaitEntity" type="RigidBody2D"]
 collision_layer = 3
+mass = 2.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
