@@ -7,7 +7,7 @@ onready var aP = $AnimationPlayer
 var motion = Vector2()
 var speed = 20
 var gravity = 5
-var jump_force = 50
+var jump_force = 75
 #var player = is_in_group("player")
 
 
