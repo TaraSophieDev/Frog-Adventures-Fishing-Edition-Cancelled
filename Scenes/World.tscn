@@ -26,8 +26,8 @@ tile_data = PoolIntArray( 262136, 2, 0, 262137, 536870914, 0, 262138, 536870914,
 
 [node name="Player" parent="Sprites" instance=ExtResource( 1 )]
 position = Vector2( 88, 40 )
-collision_layer = 2147483651
+collision_layer = 2147483652
 
 [node name="Fish" parent="Sprites" instance=ExtResource( 5 )]
 position = Vector2( 120, 72 )
-collision_layer = 3
+collision_layer = 10
