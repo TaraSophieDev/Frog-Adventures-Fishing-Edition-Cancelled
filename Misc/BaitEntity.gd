@@ -2,6 +2,7 @@ extends RigidBody2D
 
 onready var player = get_node("..")
 onready var frogSprite = player.get_node("FrogSprite")
+onready var aP = $AnimationPlayer
 
 var motion = Vector2()
 var speed = 20
@@ -41,12 +42,22 @@ func move(delta):
 		print("player pos: ", player.position.x, " Bait Pos: ", global_position.x)
 		if global_position.x > player.position.x:
 			apply_impulse(Vector2(0,0), Vector2(-speed, 0))
+			$Sprite.flip_h = false
 		if global_position.x < player.position.x:
 			apply_impulse(Vector2(0,0), Vector2(speed, 0))
+			$Sprite.flip_h = true
 		apply_central_impulse(Vector2.UP * jump_force)
 		yield(get_tree().create_timer(0.25), "timeout")
-#	else:
-#		motion.x = 0
+
+	#sets sprite to y velocity
+	if get_linear_velocity().y < 0.1:
+		$Sprite.frame = 0
+	elif get_linear_velocity().y > 0.1:
+		$Sprite.frame = 1
+	elif get_linear_velocity().y == 0:
+		$Sprite.frame = 1
+
+
 
 
 func baited():
