@@ -5,9 +5,8 @@ onready var frogSprite = player.get_node("FrogSprite")
 onready var aP = $AnimationPlayer
 
 var motion = Vector2()
-var speed = 20
-var gravity = 5
-var jump_force = 75
+var speed = 15
+var jump_force = 80
 #var player = is_in_group("player")
 
 
@@ -23,11 +22,12 @@ var state = IDLE
 func _physics_process(delta):
 	match state:
 		IDLE:
-			pass
+			sleeping = true
 		MOVING:
+			#$Camera2D.current = true
+			sleeping = false
 			move(delta)
 			#motion.y += gravity
-
 		BAITED:
 			baited()
 		CATCHING:
@@ -40,12 +40,12 @@ func move(delta):
 	if Input.is_action_just_pressed("a_button"):
 		#check if x coords is smaller than the frog x coords and otherwise
 		print("player pos: ", player.position.x, " Bait Pos: ", global_position.x)
-		if global_position.x > player.position.x:
+		if global_position.x > player.position.x - 1:
 			apply_impulse(Vector2(0,0), Vector2(-speed, 0))
-			$Sprite.flip_h = false
-		if global_position.x < player.position.x:
-			apply_impulse(Vector2(0,0), Vector2(speed, 0))
 			$Sprite.flip_h = true
+		if global_position.x < player.position.x + 1:
+			apply_impulse(Vector2(0,0), Vector2(speed, 0))
+			$Sprite.flip_h = false
 		apply_central_impulse(Vector2.UP * jump_force)
 		yield(get_tree().create_timer(0.25), "timeout")
 
@@ -73,4 +73,6 @@ func _ready():
 
 
 func _on_bait_activation():
+	yield(get_tree().create_timer(1.05), "timeout")
 	state = MOVING
+
