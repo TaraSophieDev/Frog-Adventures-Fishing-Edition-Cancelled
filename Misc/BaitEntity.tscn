@@ -36,20 +36,22 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[node name="BaitEntity" type="RigidBody2D"]
+[node name="BaitEntity" type="RigidBody2D" groups=[
+"bait",
+]]
+visible = false
 collision_layer = 3
-mass = 2.0
+mass = 3.06122
 angular_damp = 0.0
 script = ExtResource( 2 )
-
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-hframes = 2
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -2 )
 shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/bait_down = SubResource( 2 )

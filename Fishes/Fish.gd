@@ -4,6 +4,8 @@ onready var sprite = $Sprite
 onready var ap = $AnimationPlayer
 onready var rc = $RC
 
+signal baited
+
 enum {
 	IDLE,
 	NEW_DIR,
@@ -50,6 +52,7 @@ func choose(array):
 
 func baited():
 	ap.play("Chase")
+	emit_signal("baited")
 	print("baited")
 
 func _on_Timer_timeout():
