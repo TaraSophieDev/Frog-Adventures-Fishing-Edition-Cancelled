@@ -39,9 +39,9 @@ tracks/0/keys = {
 [node name="BaitEntity" type="RigidBody2D" groups=[
 "bait",
 ]]
-visible = false
 collision_layer = 3
 mass = 3.06122
+linear_damp = 0.0
 angular_damp = 0.0
 script = ExtResource( 2 )
 

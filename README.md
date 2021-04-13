@@ -7,4 +7,5 @@
 3. Zoom out/in camera
 4. Move up/down camera
 5. Other frog colors buyable with points
-6. Timer that goes down (get fishes as fast as you can) calculate a formula for catched fishes and in 2min
+6. Timer that goes down (get fishes as fast as you can) calculate a formula for catched fishes
+7. Pressing alternating keys "x" and "z/y" to catch fish

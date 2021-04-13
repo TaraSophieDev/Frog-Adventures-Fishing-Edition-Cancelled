@@ -28,9 +28,6 @@ tile_data = PoolIntArray( 262136, 2, 0, 262137, 536870914, 0, 262138, 536870914,
 position = Vector2( 88, 40 )
 collision_layer = 2147483652
 
-[node name="BaitEntity" parent="Sprites/Player" index="0"]
-visible = true
-
 [node name="Fish" parent="Sprites" instance=ExtResource( 5 )]
 position = Vector2( 80, 72 )
 

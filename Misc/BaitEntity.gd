@@ -1,8 +1,10 @@
 extends RigidBody2D
 
-onready var player = get_node("..")
-onready var frogSprite = player.get_node("FrogSprite")
+
+onready var player = get_tree().get_nodes_in_group("player")
 onready var aP = $AnimationPlayer
+
+#var frogSprite = player.get_node("Player/FrogSprite")
 
 var motion = Vector2()
 var speed = 15
