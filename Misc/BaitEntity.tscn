@@ -39,6 +39,7 @@ tracks/0/keys = {
 [node name="BaitEntity" type="RigidBody2D" groups=[
 "bait",
 ]]
+visible = false
 collision_layer = 3
 mode = 2
 mass = 3.06122
