@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 
-onready var player = get_tree().get_nodes_in_group("player")
+onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var aP = $AnimationPlayer
 
 #var frogSprite = player.get_node("Player/FrogSprite")
@@ -49,7 +49,6 @@ func move(delta):
 			apply_impulse(Vector2(0,0), Vector2(speed, 0))
 			$Sprite.flip_h = false
 		apply_central_impulse(Vector2.UP * jump_force)
-		yield(get_tree().create_timer(0.25), "timeout")
 
 	#sets sprite to y velocity
 	if get_linear_velocity().y < 0.1:
@@ -74,7 +73,7 @@ func _ready():
 	pass
 
 
-func _on_bait_activation():
-	yield(get_tree().create_timer(1.05), "timeout")
+func activate_bait():
+	$CollisionShape2D.disabled = false
 	state = MOVING
 
