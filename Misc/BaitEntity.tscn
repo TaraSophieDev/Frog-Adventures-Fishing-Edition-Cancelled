@@ -40,6 +40,7 @@ tracks/0/keys = {
 "bait",
 ]]
 collision_layer = 3
+mode = 2
 mass = 3.06122
 linear_damp = 0.0
 angular_damp = 0.0
