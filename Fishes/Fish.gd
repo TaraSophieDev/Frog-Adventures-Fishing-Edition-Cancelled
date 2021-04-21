@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 onready var sprite = $Sprite
 onready var ap = $AnimationPlayer
-onready var rc = $RC
 
 signal baited
 
@@ -21,8 +20,6 @@ var state = IDLE
 var dir = Vector2.RIGHT
 
 func _process(delta):
-	if rc.is_colliding():
-		state = baited()
 	match state:
 		IDLE:
 			ap.stop()
@@ -37,7 +34,6 @@ func _process(delta):
 func move(delta):
 	# Rotates raycast
 	var temp = rad2deg(atan2(-dir.y, -dir.x))
-	rc.rotation_degrees = temp
 
 	ap.play("Swim")
 	position += dir * SPEED * delta
@@ -59,3 +55,9 @@ func _on_Timer_timeout():
 	$Timer.wait_time = choose([1, 1.5, 2])
 	print("Timer wait time: ", $Timer.wait_time)
 	state = choose([IDLE, NEW_DIR, MOVE])
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("bait"):
+		body.set_fish_sprite($Sprite.texture.resource_path)
+		queue_free()
