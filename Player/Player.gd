@@ -12,7 +12,6 @@ onready var baitSpawn = $BaitSpawn
 onready var bait_scene = preload("res://Misc/BaitEntity.tscn")
 var bait_instance = null
 
-signal bait_activation
 
 
 enum {
@@ -21,7 +20,7 @@ enum {
 	FISHING,
 	CATCHING
 }
-var speed = 25
+export var speed = 30
 
 var motion = Vector2()
 var state = MOVING
@@ -91,14 +90,14 @@ func spawnBait(delta):
 	bait_instance.show()
 	bait_instance.sleeping = true
 	if frogSprite.flip_h == false:
-		bait_instance.get_node("Sprite").flip_h = true
+		bait_instance.get_node("BaitSprite").flip_h = true
 		#bait.global_position = baitSpawnLeft.get_global_position()
 		bait_instance.sleeping = false
 		bait_instance.visible = true
 		bait_instance.apply_impulse(Vector2(0, 0), Vector2(-100, 0))
 		state = FISHING
 	if frogSprite.flip_h == true:
-		bait_instance.get_node("Sprite").flip_h = false
+		bait_instance.get_node("BaitSprite").flip_h = false
 		#bait.global_position = baitSpawnRight.get_global_position()
 		bait_instance.sleeping = false
 		bait_instance.visible = true
