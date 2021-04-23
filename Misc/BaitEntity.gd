@@ -28,9 +28,9 @@ var state = IDLE
 func _physics_process(delta):
 	
 	if baitSprite.flip_h == true:
-		fishSprite.position = Vector2(-15, -2)
+		fishSprite.position = Vector2(5, 0)
 	else:
-		fishSprite.position = Vector2(15, 0)
+		fishSprite.position = Vector2(-5, 0)
 	
 	#self.position.y = clamp(self.position.y, -80, 80)
 	match state:
@@ -56,11 +56,11 @@ func move(delta):
 		if global_position.x > player.position.x - 1:
 			apply_impulse(Vector2(0,0), Vector2(-speed, 0))
 			baitSprite.flip_h = true
-			fishSprite.flip_h = true
+			fishSprite.flip_h = false
 		if global_position.x < player.position.x + 1:
 			apply_impulse(Vector2(0,0), Vector2(speed, 0))
 			baitSprite.flip_h = false
-			fishSprite.flip_h = false
+			fishSprite.flip_h = true
 		apply_central_impulse(Vector2.UP * jump_force_moving)
 	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):
 		apply_central_impulse(Vector2.UP * jump_force)
