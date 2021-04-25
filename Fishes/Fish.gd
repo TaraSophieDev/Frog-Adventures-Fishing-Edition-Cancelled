@@ -2,59 +2,55 @@ extends KinematicBody2D
 
 onready var sprite = $Sprite
 onready var ap = $AnimationPlayer
+onready var swimTimer = $SwimTimer
+
+export var time = 3
 
 signal baited
 
 enum {
-	IDLE,
-	NEW_DIR,
 	MOVE,
+	CHANGE_DIR,
 	BAITED
 }
 
 func _ready():
-	randomize()
+	swimTimer.wait_time = time
 
-var SPEED = 10
-var state = IDLE
+export var speed = 10
+var state = MOVE
 var dir = Vector2.RIGHT
 
 func _process(delta):
 	match state:
-		IDLE:
-			ap.stop()
-		NEW_DIR:
-			dir = choose([Vector2.RIGHT, Vector2.LEFT])
-			state = choose([IDLE, MOVE])
 		MOVE:
 			move(delta)
 		BAITED:
 			baited()
 
 func move(delta):
-	# Rotates raycast
-	var temp = rad2deg(atan2(-dir.y, -dir.x))
-
+	print(swimTimer.time_left)
+	if swimTimer.time_left == 0:
+		if sprite.flip_h == true:
+			dir = Vector2.LEFT
+			swimTimer.start(time)
+		elif sprite.flip_h == false:
+			dir = Vector2.RIGHT
+			swimTimer.start(time)
 	ap.play("Swim")
-	position += dir * SPEED * delta
-	if dir.x == 1:
+	position += dir * speed * delta
+	if dir == Vector2.RIGHT:
 		sprite.flip_h = true
-	elif dir.x == -1:
+	elif dir == Vector2.LEFT:
 		sprite.flip_h = false
 
-func choose(array):
-	array.shuffle()
-	return array.front()
-
+func change_dir():
+	print(swimTimer.time_left)
+	
 func baited():
 	ap.play("Chase")
 	emit_signal("baited")
 	print("baited")
-
-func _on_Timer_timeout():
-	$Timer.wait_time = choose([1, 1.5, 2])
-	print("Timer wait time: ", $Timer.wait_time)
-	state = choose([IDLE, NEW_DIR, MOVE])
 
 
 func _on_Area2D_body_entered(body):
