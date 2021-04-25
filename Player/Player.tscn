@@ -40,6 +40,7 @@ tracks/0/keys = {
 position = Vector2( 83, 50 )
 collision_layer = 2147483653
 script = ExtResource( 1 )
+speed = 80
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 visible = false
@@ -52,8 +53,8 @@ hframes = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -2, -10 )
-offset = Vector2( 0, 35 )
 current = true
+zoom = Vector2( 1.5, 1.5 )
 
 [node name="SwimmingPlayer" type="AnimationPlayer" parent="."]
 autoplay = "swimming"
@@ -71,4 +72,5 @@ shape = SubResource( 1 )
 
 [node name="BaitSpawn" type="Position2D" parent="."]
 position = Vector2( -20, -5 )
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
