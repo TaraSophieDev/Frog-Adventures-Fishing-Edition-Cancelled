@@ -94,14 +94,14 @@ func spawnBait(delta):
 		#bait.global_position = baitSpawnLeft.get_global_position()
 		bait_instance.sleeping = false
 		bait_instance.visible = true
-		bait_instance.apply_impulse(Vector2(0, 0), Vector2(-100, 0))
+		bait_instance.apply_impulse(Vector2(0, 0), Vector2(-200, 0))
 		state = FISHING
 	if frogSprite.flip_h == true:
 		bait_instance.get_node("BaitSprite").flip_h = false
 		#bait.global_position = baitSpawnRight.get_global_position()
 		bait_instance.sleeping = false
 		bait_instance.visible = true
-		bait_instance.apply_impulse(Vector2(0, 0), Vector2(100, 0))
+		bait_instance.apply_impulse(Vector2(0, 0), Vector2(200, 0))
 		state = FISHING
 
 	#get_tree().get_root().add_child(bait_instance)
