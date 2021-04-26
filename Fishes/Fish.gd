@@ -29,7 +29,7 @@ func _process(delta):
 			baited()
 
 func move(delta):
-	print(swimTimer.time_left)
+	#checks if time left is 0 and where the fish was looking to change dir
 	if swimTimer.time_left == 0:
 		if sprite.flip_h == true:
 			dir = Vector2.LEFT
@@ -43,9 +43,6 @@ func move(delta):
 		sprite.flip_h = true
 	elif dir == Vector2.LEFT:
 		sprite.flip_h = false
-
-func change_dir():
-	print(swimTimer.time_left)
 	
 func baited():
 	ap.play("Chase")
@@ -55,5 +52,6 @@ func baited():
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("bait"):
+		#sends sprite path argument
 		body.set_fish_sprite($Sprite.texture.resource_path)
 		queue_free()

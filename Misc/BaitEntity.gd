@@ -19,20 +19,20 @@ var jump_force = 80
 enum {
 	IDLE,
 	MOVING,
-	BAITED,
+	FIGHTING,
 	CATCHING
 }
 
 var state = IDLE
 
 func _physics_process(delta):
-	
+	#sets fish sprite position to baitSprite orientation
 	if baitSprite.flip_h == true:
 		fishSprite.position = Vector2(5, 0)
 	else:
 		fishSprite.position = Vector2(-5, 0)
-	
-	#self.position.y = clamp(self.position.y, -80, 80)
+		
+
 	match state:
 		IDLE:
 			sleeping = true
@@ -40,8 +40,6 @@ func _physics_process(delta):
 			sleeping = false
 			move(delta)
 			#motion.y += gravity
-		BAITED:
-			baited()
 		CATCHING:
 			catching()
 		
@@ -53,6 +51,7 @@ func move(delta):
 	if Input.is_action_just_pressed("a_button"):
 		#check if x coords is smaller than the frog x coords and otherwise
 		print("player pos: ", player.position.x, " Bait Pos: ", global_position.x)
+		#sets impulse direction to player pos
 		if global_position.x > player.position.x - 1:
 			apply_impulse(Vector2(0,0), Vector2(-speed, 0))
 			baitSprite.flip_h = true
@@ -62,10 +61,11 @@ func move(delta):
 			baitSprite.flip_h = false
 			fishSprite.flip_h = true
 		apply_central_impulse(Vector2.UP * jump_force_moving)
+	#checks if left or right is pressed to only add a central impulse to up dir
 	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):
 		apply_central_impulse(Vector2.UP * jump_force)
 
-	#sets sprite to y velocity
+	#sets sprite frame to y velocity
 	if get_linear_velocity().y < 0.1:
 		baitSprite.frame = 0
 	elif get_linear_velocity().y > 0.1:
@@ -75,10 +75,17 @@ func move(delta):
 
 
 
-
-func baited():
-	pass
-
+func fighting():
+	if Input.is_action_pressed("ui_down"):
+		if global_position.x > player.position.x - 1:
+			baitSprite.flip_h = false
+			fishSprite.flip_h = true
+			apply_impulse(Vector2(0,0), Vector2(speed, 0))
+		if global_position.x < player.position.x + 1:
+			baitSprite.flip_h = true
+			fishSprite.flip_h = false
+			apply_impulse(Vector2(0,0), Vector2(-speed, 0))
+	
 func catching():
 	pass
 
@@ -95,6 +102,7 @@ func activate_bait():
 func set_fish_sprite(var spritePath):
 	print(spritePath)
 	fishSprite.texture = load(spritePath)
+	fighting()
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("fish"):

@@ -1,14 +1,9 @@
 extends KinematicBody2D
 
 onready var frogSprite = $FrogSprite
-#onready var baitSprite = $FrogSprite/Bait/Sprite
 onready var swimP = $SwimmingPlayer
 onready var swingP = $SwingPlayer
 onready var baitSpawn = $BaitSpawn
-#onready var baitSpawnLeft = $BaitSpawnLeft
-#onready var baitSpawnRight = $BaitSpawnRight
-
-#onready var bait = get_node("BaitEntity")
 onready var bait_scene = preload("res://Misc/BaitEntity.tscn")
 var bait_instance = null
 
@@ -41,6 +36,7 @@ func _process(delta):
 		CATCHING:
 			pass
 	
+	#sets bait spawn pos
 	if frogSprite.flip_h == true:
 		baitSpawn.position = Vector2(25, -5)
 	else:
@@ -79,16 +75,27 @@ func playThrowingAnim(delta):
 func spawnBait(delta):
 	if is_instance_valid(bait_instance):
 		bait_instance.queue_free()
+		#instanciate bait
 	bait_instance = bait_scene.instance()
+	
+	#sets bait instance to spawn pos
 	if frogSprite.flip_h == true:
 		bait_instance.position = baitSpawn.position
 	elif frogSprite.flip_h == false:
 		bait_instance.position = baitSpawn.position
+	
+	#spawns bait
 	add_child(bait_instance)
+	
+	#waits for letting the bait move and thrown out
 	yield(get_tree().create_timer(1.10), "timeout")
+	
+	#starts function to activate bait collision and movement
 	bait_instance.activate_bait()
 	bait_instance.show()
 	bait_instance.sleeping = true
+	
+	#sets throw dir
 	if frogSprite.flip_h == false:
 		bait_instance.get_node("BaitSprite").flip_h = true
 		#bait.global_position = baitSpawnLeft.get_global_position()
@@ -104,12 +111,11 @@ func spawnBait(delta):
 		bait_instance.apply_impulse(Vector2(0, 0), Vector2(200, 0))
 		state = FISHING
 
-	#get_tree().get_root().add_child(bait_instance)
-
 
 
 
 func _on_Area2D_body_entered(body):
+	#checks if the bait can be catched
 	if body.is_in_group("bait") and is_instance_valid(bait_instance) and state == FISHING:
 		bait_instance.queue_free()
 		state = MOVING
