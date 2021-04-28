@@ -9,7 +9,7 @@
 [ext_resource path="res://Sprites/Tiles/Cloud.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 410, 10 )
+extents = Vector2( 544, 10 )
 
 [node name="World" type="Node2D"]
 
@@ -84,7 +84,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionBoxes/StaticBody2D"]
-position = Vector2( 280, -80 )
+position = Vector2( 280, -100 )
 rotation = 3.14159
 shape = SubResource( 1 )
 one_way_collision = true
