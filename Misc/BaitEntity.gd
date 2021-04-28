@@ -5,14 +5,17 @@ onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var aP = $AnimationPlayer
 onready var baitSprite = $BaitSprite
 onready var fishSprite = $BaitSprite/FishSprite
+onready var fightTimer = $FightTimer
 #onready var cam = get_viewport().get_camera()
 
 #var frogSprite = player.get_node("Player/FrogSprite")
+export var time = 2
 
 var motion = Vector2()
 var speed = 15
-var jump_force_moving = 70
-var jump_force = 80
+var fight_speed = 150
+var jump_force_moving = 50
+var jump_force = 50
 #var player = is_in_group("player")
 
 
@@ -24,6 +27,9 @@ enum {
 }
 
 var state = IDLE
+
+func _ready():
+	fightTimer.wait_time = time
 
 func _physics_process(delta):
 	#sets fish sprite position to baitSprite orientation
@@ -38,6 +44,9 @@ func _physics_process(delta):
 			sleeping = true
 		MOVING:
 			sleeping = false
+			move(delta)
+		FIGHTING:
+			fighting(delta)
 			move(delta)
 			#motion.y += gravity
 		CATCHING:
@@ -75,23 +84,23 @@ func move(delta):
 
 
 
-func fighting():
-	if Input.is_action_pressed("ui_down"):
-		if global_position.x > player.position.x - 1:
+func fighting(delta):
+	#fightTimer.start(time)
+	if fightTimer.time_left == 0:
+		print("time left: ", fightTimer.time_left)
+		if global_position.x > player.position.x:
 			baitSprite.flip_h = false
 			fishSprite.flip_h = true
-			apply_impulse(Vector2(0,0), Vector2(speed, 0))
-		if global_position.x < player.position.x + 1:
+			apply_impulse(Vector2(0,0), Vector2(fight_speed, 0))
+			fightTimer.start(time)
+		if global_position.x < player.position.x :
 			baitSprite.flip_h = true
 			fishSprite.flip_h = false
-			apply_impulse(Vector2(0,0), Vector2(-speed, 0))
+			apply_impulse(Vector2(0,0), Vector2(-fight_speed, 0))
+			fightTimer.start(time)
+		apply_central_impulse(Vector2.UP)
 	
 func catching():
-	pass
-
-
-
-func _ready():
 	pass
 
 
@@ -102,7 +111,7 @@ func activate_bait():
 func set_fish_sprite(var spritePath):
 	print(spritePath)
 	fishSprite.texture = load(spritePath)
-	fighting()
+	state = FIGHTING
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("fish"):
