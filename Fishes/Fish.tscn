@@ -38,7 +38,7 @@ tracks/0/keys = {
 extents = Vector2( 8, 6 )
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 11.0
+radius = 7.0
 
 [node name="Fish" type="KinematicBody2D" groups=[
 "fish",
@@ -61,6 +61,7 @@ shape = SubResource( 3 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -6, 0 )
 shape = SubResource( 4 )
 
 [node name="SwimTimer" type="Timer" parent="."]
