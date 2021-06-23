@@ -5,6 +5,7 @@ onready var ap = $AnimationPlayer
 onready var swimTimer = $SwimTimer
 
 export var time = 3
+export var fish_points: int = 15
 
 signal baited
 
@@ -54,4 +55,5 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("bait"):
 		#sends sprite path argument
 		body.set_fish_sprite($Sprite.texture.resource_path)
+		body.get_points(fish_points)
 		queue_free()

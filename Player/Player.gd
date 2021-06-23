@@ -19,6 +19,7 @@ export var speed = 30
 
 var motion = Vector2()
 var state = MOVING
+var player_points: int = 0
 
 
 func _ready():
@@ -112,7 +113,9 @@ func spawnBait(delta):
 		state = FISHING
 
 
-
+func get_points(bait_points: int):
+	print("test", bait_points)
+	player_points += bait_points
 
 func _on_Area2D_body_entered(body):
 	#checks if the bait can be catched

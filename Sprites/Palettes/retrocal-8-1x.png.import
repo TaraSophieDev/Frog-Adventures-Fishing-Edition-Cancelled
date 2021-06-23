@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Water_Tiles.png-0f2721a5d552e958cc07c470b770ecaf.stex"
+path="res://.import/retrocal-8-1x.png-b9c87cc337d7edbfb980ebf162499d57.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tiles/Water_Tiles.png"
-dest_files=[ "res://.import/Water_Tiles.png-0f2721a5d552e958cc07c470b770ecaf.stex" ]
+source_file="res://Sprites/Palettes/retrocal-8-1x.png"
+dest_files=[ "res://.import/retrocal-8-1x.png-b9c87cc337d7edbfb980ebf162499d57.stex" ]
 
 [params]
 

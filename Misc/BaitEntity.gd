@@ -6,16 +6,19 @@ onready var aP = $AnimationPlayer
 onready var baitSprite = $BaitSprite
 onready var fishSprite = $BaitSprite/FishSprite
 onready var fightTimer = $FightTimer
+onready var fishAnimation = $FishAnimation
 #onready var cam = get_viewport().get_camera()
 
 #var frogSprite = player.get_node("Player/FrogSprite")
-export var time = 2
+export var time: float = 2
 
 var motion = Vector2()
-var speed = 15
-var fight_speed = 150
-var jump_force_moving = 50
-var jump_force = 50
+var speed: int = 15
+var fight_speed: int = 150
+var jump_force_moving: int = 50
+var jump_force: int = 50
+var points: int = 0
+var bait_points: int
 #var player = is_in_group("player")
 
 
@@ -85,9 +88,10 @@ func move(delta):
 
 
 func fighting(delta):
+	fishAnimation.play("Fighting")
 	#fightTimer.start(time)
 	if fightTimer.time_left == 0:
-		print("time left: ", fightTimer.time_left)
+		#print("time left: ", fightTimer.time_left)
 		if global_position.x > player.position.x:
 			baitSprite.flip_h = false
 			fishSprite.flip_h = true
@@ -113,6 +117,18 @@ func set_fish_sprite(var spritePath):
 	fishSprite.texture = load(spritePath)
 	state = FIGHTING
 
+func set_points():
+	print("test: ", points)
+	points += bait_points
+	
+func get_points(fish_points: int):
+	print("cringe")
+	fish_points = bait_points
+
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("fish"):
 		body.queue_free()
+		baitSprite.hide
+	if body.is_in_group("player"):
+		print("CBT")
+		body.get_points(bait_points)

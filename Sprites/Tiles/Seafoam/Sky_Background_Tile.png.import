@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Water.png-797b9eeb849b44b36f034c657524967e.stex"
+path="res://.import/Sky_Background_Tile.png-cac51f4e1480c300f693e978c2552910.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/water/Water.png"
-dest_files=[ "res://.import/Water.png-797b9eeb849b44b36f034c657524967e.stex" ]
+source_file="res://Sprites/Tiles/Seafoam/Sky_Background_Tile.png"
+dest_files=[ "res://.import/Sky_Background_Tile.png-cac51f4e1480c300f693e978c2552910.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

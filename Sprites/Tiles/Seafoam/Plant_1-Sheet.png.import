@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sky_Background_Tile.png-5534734297fe3e5a7af95df4d2a1c793.stex"
+path="res://.import/Plant_1-Sheet.png-c67a863b6ec8d1c0ce5470b01f3028a8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tiles/Sky_Background_Tile.png"
-dest_files=[ "res://.import/Sky_Background_Tile.png-5534734297fe3e5a7af95df4d2a1c793.stex" ]
+source_file="res://Sprites/Tiles/Seafoam/Plant_1-Sheet.png"
+dest_files=[ "res://.import/Plant_1-Sheet.png-c67a863b6ec8d1c0ce5470b01f3028a8.stex" ]
 
 [params]
 

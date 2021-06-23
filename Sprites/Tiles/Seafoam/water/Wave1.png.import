@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cloud.png-647fb4ed37e6e21f15ec56be265c252d.stex"
+path="res://.import/Wave1.png-2bc6eda93dfb5cd151ba8b89107d87c4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tiles/Cloud.png"
-dest_files=[ "res://.import/Cloud.png-647fb4ed37e6e21f15ec56be265c252d.stex" ]
+source_file="res://Sprites/Tiles/Seafoam/water/Wave1.png"
+dest_files=[ "res://.import/Wave1.png-2bc6eda93dfb5cd151ba8b89107d87c4.stex" ]
 
 [params]
 

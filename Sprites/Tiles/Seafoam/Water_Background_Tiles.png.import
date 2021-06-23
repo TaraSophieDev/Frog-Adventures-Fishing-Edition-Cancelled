@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Fish_1-Sheet.png-133243544aec9e97de9252c77088f114.stex"
+path="res://.import/Water_Background_Tiles.png-f9d7483f0e088ba8945bce54fea27b8d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Fishes/Fish_1-Sheet.png"
-dest_files=[ "res://.import/Fish_1-Sheet.png-133243544aec9e97de9252c77088f114.stex" ]
+source_file="res://Sprites/Tiles/Seafoam/Water_Background_Tiles.png"
+dest_files=[ "res://.import/Water_Background_Tiles.png-f9d7483f0e088ba8945bce54fea27b8d.stex" ]
 
 [params]
 

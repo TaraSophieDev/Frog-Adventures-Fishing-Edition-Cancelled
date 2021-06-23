@@ -15,7 +15,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Frog Adventures: Fishing Edition"
-run/main_scene="res://Scenes/World.tscn"
+run/main_scene="res://Scenes/Level_1.tscn"
 config/icon="res://icon.png"
 
 [debug]
